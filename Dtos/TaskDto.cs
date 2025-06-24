@@ -1,9 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Models
+namespace Dtos
 {
-    [Table("tasks")]
-    public class TaskItem
+    public class TaskDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
