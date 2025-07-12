@@ -34,18 +34,29 @@ public class TaskRepository : ITaskRepository
         _dbContext.SaveChanges();
     }
 
-    public void UpdateTask(TaskItem item)
+    public void UpdateTask(TaskItem item, Guid id)
     {
-        _dbContext.Update(item); 
+        var taskTobeUpdated = _dbContext.TasksItems.FirstOrDefault(i => i.Id == id);
+
+        if (taskTobeUpdated == null)
+        {
+            throw new Exception("Não foi possível atualizar a tarefa especificada");
+        }
+        
+        taskTobeUpdated.Title = item.Title;
+        taskTobeUpdated.Category = item.Category;
+        taskTobeUpdated.Description = item.Description;
+        taskTobeUpdated.IsCompleted = item.IsCompleted;
+
         _dbContext.SaveChanges();
     }
 
     public void DeleteTask(Guid id)
     {
-        var item = _dbContext.TasksItems.Find(id);
-        if (item != null)
+        var taskToBeDeleted = _dbContext.TasksItems.Find(id);
+        if (taskToBeDeleted != null)
         {
-            _dbContext.TasksItems.Remove(item);
+            _dbContext.TasksItems.Remove(taskToBeDeleted);
             _dbContext.SaveChanges();
         }
     }

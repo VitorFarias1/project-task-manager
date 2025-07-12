@@ -5,7 +5,7 @@ public interface ITaskRepository
     IEnumerable<TaskItem> GetAll();
     TaskItem GetById(Guid Id);
     void CreateTask(TaskItem item);
-    void UpdateTask(TaskItem item);
-    void DeleteTask(Guid Id);
+    void UpdateTask(TaskItem item, Guid id);
+    void DeleteTask(Guid id);
     
 }
