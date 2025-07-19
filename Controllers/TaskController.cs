@@ -15,7 +15,7 @@ namespace Controllers
             _service = service;
         }
         
-        [HttpGet("/task")]
+        [HttpGet("/getTask")]
         public IActionResult GetTasks()
         {
             var allTasks = _service.GetAllTasks();
@@ -28,7 +28,7 @@ namespace Controllers
             return Ok(allTasks);
         }
 
-        [HttpGet("/task/{id}")]
+        [HttpGet("/getTask/{id}")]
         public IActionResult GetTaskById(Guid id)
         {
             var task = _service.GetTaskById(id);
@@ -41,7 +41,7 @@ namespace Controllers
             return Ok(task);
         }
 
-        [HttpPost("/task")]
+        [HttpPost("/createTask")]
         public IActionResult CreateTask([FromBody] TaskDto task)
         {
             if (task == null)
@@ -52,7 +52,7 @@ namespace Controllers
             return Created();
         }
 
-        [HttpPut("/task/{id}")]
+        [HttpPut("/updateTask/{id}")]
         public IActionResult UpdateTask([FromBody] TaskDto taskDto, Guid id)
         {
            
@@ -61,7 +61,7 @@ namespace Controllers
 
         }
 
-        [HttpDelete("/task/{id}")]
+        [HttpDelete("/deleteTask/{id}")]
         public IActionResult DeleteTask(Guid id)
         {
             _service.DeleteTask(id);
